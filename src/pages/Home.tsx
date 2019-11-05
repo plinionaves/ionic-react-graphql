@@ -4,7 +4,11 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonItem,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  IonImg,
 } from '@ionic/react'
 import React from 'react'
 
@@ -26,9 +30,13 @@ const Home: React.FC = () => {
         ) : (
           data &&
           data.launchesPast.map(launch => (
-            <IonItem key={launch.id}>
-              {launch.mission_name} | {launch.rocket.rocket_name}
-            </IonItem>
+            <IonCard key={launch.id}>
+              <IonCardHeader>
+                <IonCardTitle>{launch.mission_name}</IonCardTitle>
+              </IonCardHeader>
+              <IonImg src={launch.links.flickr_images[0]} />
+              <IonCardContent>{launch.rocket.rocket_name}</IonCardContent>
+            </IonCard>
           ))
         )}
       </IonContent>
