@@ -7,3 +7,11 @@ generates:
       - typescript
       - typescript-operations
       - typescript-react-apollo
+    config:
+      avoidOptionals: true
+      maybeValue: T
+      withHooks: true
+      withComponent: false
+      withHOC: false
+      withMutationFn: false
+      withResultType: false
