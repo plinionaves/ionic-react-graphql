@@ -52,6 +52,7 @@
     "@graphql-codegen/typescript": "1.8.2",
     "@graphql-codegen/typescript-operations": "1.8.2",
     "@graphql-codegen/typescript-react-apollo": "1.8.2",
-    "@ionic/lab": "2.0.13"
+    "@ionic/lab": "2.0.13",
+    "node-sass": "^4.13.0"
   }
 }
