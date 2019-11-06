@@ -4,7 +4,9 @@ import { useLaunchesPastQuery, Launch } from '../generated/graphql'
 import LaunchesItem from './LaunchesItem'
 
 const Launches: React.FC = () => {
-  const { data, loading } = useLaunchesPastQuery()
+  const { data, loading } = useLaunchesPastQuery({
+    variables: { limit: 12, offset: 0 },
+  })
 
   return (
     <>
