@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonImg,
-  IonCardContent,
-} from '@ionic/react'
+import { IonCard, IonImg } from '@ionic/react'
 
 import { Launch } from '../generated/graphql'
 
@@ -17,12 +11,10 @@ const LaunchesItem: React.FC<Props> = props => {
   const { launch } = props
 
   return (
-    <IonCard>
-      <IonCardHeader>
-        <IonCardTitle>{launch.mission_name}</IonCardTitle>
-      </IonCardHeader>
+    <IonCard button>
       <IonImg src={launch.links.flickr_images[0]} />
-      <IonCardContent>{launch.rocket.rocket_name}</IonCardContent>
+      <h2>{launch.mission_name}</h2>
+      <p>{launch.rocket.rocket_name}</p>
     </IonCard>
   )
 }
