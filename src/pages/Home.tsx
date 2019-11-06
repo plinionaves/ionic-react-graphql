@@ -4,15 +4,11 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
-  IonImg,
 } from '@ionic/react'
 import React from 'react'
 
-import { useLaunchesPastQuery } from '../generated/graphql'
+import { useLaunchesPastQuery, Launch } from '../generated/graphql'
+import LaunchesItem from '../components/LaunchesItem'
 
 const Home: React.FC = () => {
   const { data, loading } = useLaunchesPastQuery()
@@ -30,13 +26,7 @@ const Home: React.FC = () => {
         ) : (
           data &&
           data.launchesPast.map(launch => (
-            <IonCard key={launch.id}>
-              <IonCardHeader>
-                <IonCardTitle>{launch.mission_name}</IonCardTitle>
-              </IonCardHeader>
-              <IonImg src={launch.links.flickr_images[0]} />
-              <IonCardContent>{launch.rocket.rocket_name}</IonCardContent>
-            </IonCard>
+            <LaunchesItem key={launch.id} launch={launch as Launch} />
           ))
         )}
       </IonContent>
