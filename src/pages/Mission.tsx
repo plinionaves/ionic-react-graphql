@@ -5,6 +5,8 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
+  IonButtons,
+  IonBackButton,
 } from '@ionic/react'
 import { useParams } from 'react-router'
 
@@ -21,6 +23,9 @@ const Mission: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/missions" />
+          </IonButtons>
           <IonTitle>Mission Detail</IonTitle>
         </IonToolbar>
       </IonHeader>
