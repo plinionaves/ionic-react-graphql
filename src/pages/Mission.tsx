@@ -6,8 +6,11 @@ import {
   IonTitle,
   IonContent,
 } from '@ionic/react'
+import { useParams } from 'react-router'
 
 const Mission: React.FC = () => {
+  const { id } = useParams()
+
   return (
     <IonPage>
       <IonHeader>
@@ -15,7 +18,7 @@ const Mission: React.FC = () => {
           <IonTitle>Mission Detail</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">Some mission</IonContent>
+      <IonContent className="ion-padding">Launch with id: {id}</IonContent>
     </IonPage>
   )
 }
