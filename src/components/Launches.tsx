@@ -5,7 +5,7 @@ import { useLaunchesPastQuery, Launch } from '../generated/graphql'
 import LaunchesItem from './LaunchesItem'
 
 const Launches: React.FC = () => {
-  const { data, loading } = useLaunchesPastQuery({
+  const { data, loading, fetchMore } = useLaunchesPastQuery({
     variables: { limit: 12, offset: 0 },
   })
   const [offset, setOffset] = useState(0)
@@ -18,7 +18,30 @@ const Launches: React.FC = () => {
 
   useEffect(() => {
     console.log('Offset changed: ', offset)
-  }, [offset])
+    if (offset > 0) {
+      fetchMore<'offset'>({
+        variables: {
+          offset,
+        },
+        updateQuery(previous, { fetchMoreResult }) {
+          console.log('Prev: ', previous)
+          console.log('More: ', fetchMoreResult)
+
+          if (!fetchMoreResult) {
+            return previous
+          }
+
+          return {
+            ...previous,
+            launchesPast: [
+              ...previous.launchesPast,
+              ...fetchMoreResult.launchesPast,
+            ],
+          }
+        },
+      })
+    }
+  }, [fetchMore, offset])
 
   return (
     <>
