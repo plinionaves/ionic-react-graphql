@@ -9,7 +9,7 @@ import React from 'react'
 
 import Launches from '../components/Launches'
 
-const Home: React.FC = () => (
+const Missions: React.FC = () => (
   <IonPage>
     <IonHeader>
       <IonToolbar>
@@ -22,4 +22,4 @@ const Home: React.FC = () => (
   </IonPage>
 )
 
-export default Home
+export default Missions
