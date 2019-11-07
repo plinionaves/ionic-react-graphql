@@ -10,25 +10,26 @@ const Launches: React.FC = () => {
   })
   const [offset, setOffset] = useState(0)
   const [limit] = useState(12)
+  const [finished, setFinished] = useState(false)
 
-  const handleLoadMore = useCallback(() => {
-    setOffset(limit + offset)
-    console.log('Clicked!')
-  }, [limit, offset])
+  const handleLoadMore = useCallback(() => setOffset(limit + offset), [
+    limit,
+    offset,
+  ])
 
   useEffect(() => {
-    console.log('Offset changed: ', offset)
     if (offset > 0) {
       fetchMore<'offset'>({
         variables: {
           offset,
         },
         updateQuery(previous, { fetchMoreResult }) {
-          console.log('Prev: ', previous)
-          console.log('More: ', fetchMoreResult)
-
           if (!fetchMoreResult) {
             return previous
+          }
+
+          if (fetchMoreResult.launchesPast.length < limit) {
+            setFinished(true)
           }
 
           return {
@@ -41,7 +42,7 @@ const Launches: React.FC = () => {
         },
       })
     }
-  }, [fetchMore, offset])
+  }, [fetchMore, limit, offset])
 
   return (
     <>
@@ -53,9 +54,11 @@ const Launches: React.FC = () => {
           <LaunchesItem key={launch.id} launch={launch as Launch} />
         ))
       )}
-      <IonButton expand="block" onClick={handleLoadMore}>
-        Load more...
-      </IonButton>
+      {!loading && !finished ? (
+        <IonButton expand="block" onClick={handleLoadMore}>
+          Load more...
+        </IonButton>
+      ) : null}
     </>
   )
 }
