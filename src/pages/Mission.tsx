@@ -8,7 +8,8 @@ import {
 } from '@ionic/react'
 import { useParams } from 'react-router'
 
-import { useLaunchQuery } from '../generated/graphql'
+import { useLaunchQuery, Launch } from '../generated/graphql'
+import LaunchDetail from '../components/LaunchDetail'
 
 const Mission: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -27,7 +28,7 @@ const Mission: React.FC = () => {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <p>Launch: {data!.launch.mission_name}</p>
+          <LaunchDetail launch={data!.launch as Launch} />
         )}
       </IonContent>
     </IonPage>
