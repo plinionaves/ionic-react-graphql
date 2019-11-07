@@ -14,7 +14,11 @@ const LaunchesItem: React.FC<Props> = props => {
   const { launch } = props
 
   return (
-    <IonCard button className={styles.card}>
+    <IonCard
+      button
+      className={styles.card}
+      routerLink={`/missions/${launch.id}`}
+    >
       <IonImg
         src={launch.links.flickr_images[0] || noPhoto}
         className={styles.img}
