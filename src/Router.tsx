@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { IonRouterOutlet } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
 
+import Mission from './pages/Mission'
 import Missions from './pages/Missions'
 
 const Router: React.FC = () => (
@@ -10,6 +11,9 @@ const Router: React.FC = () => (
     <IonRouterOutlet>
       <Route path="/missions" exact>
         <Missions />
+      </Route>
+      <Route path="/missions/:id" exact>
+        <Mission />
       </Route>
       <Route path="/" exact>
         <Redirect to="/missions" />
