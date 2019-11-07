@@ -8,8 +8,13 @@ import {
 } from '@ionic/react'
 import { useParams } from 'react-router'
 
+import { useLaunchQuery } from '../generated/graphql'
+
 const Mission: React.FC = () => {
-  const { id } = useParams()
+  const { id } = useParams<{ id: string }>()
+  const { data, loading } = useLaunchQuery({
+    variables: { id },
+  })
 
   return (
     <IonPage>
@@ -18,7 +23,13 @@ const Mission: React.FC = () => {
           <IonTitle>Mission Detail</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">Launch with id: {id}</IonContent>
+      <IonContent className="ion-padding">
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <p>Launch: {data!.launch.mission_name}</p>
+        )}
+      </IonContent>
     </IonPage>
   )
 }
