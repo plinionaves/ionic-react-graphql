@@ -14,6 +14,7 @@ import {
 import { checkmark, close } from 'ionicons/icons'
 
 import { Launch } from '../generated/graphql'
+import styles from './LaunchDetail.module.scss'
 
 interface Props {
   launch: Launch
@@ -36,7 +37,7 @@ const LaunchDetail: React.FC<Props> = ({ launch }) => (
       />
     </IonItem>
 
-    <IonImg src={launch.links.flickr_images[0]} />
+    <IonImg src={launch.links.flickr_images[0]} className={styles.img} />
 
     <IonCardContent>{launch.details}</IonCardContent>
 
@@ -44,7 +45,7 @@ const LaunchDetail: React.FC<Props> = ({ launch }) => (
       <IonRow>
         {launch.links.flickr_images.map(image => (
           <IonCol key={image} size="3">
-            <IonThumbnail>
+            <IonThumbnail className={styles.thumb}>
               <IonImg src={image} />
             </IonThumbnail>
           </IonCol>
