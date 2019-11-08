@@ -6,8 +6,9 @@ import {
   IonButton,
   IonIcon,
   IonContent,
-  IonImg,
   IonFooter,
+  IonSlides,
+  IonSlide,
 } from '@ionic/react'
 import { close, add, remove } from 'ionicons/icons'
 
@@ -18,11 +19,24 @@ interface Props {
 
 const ImageViewer: React.FC<Props> = props => {
   const { src, onClose = () => null } = props
+  const options = {
+    zoom: {
+      maxRatio: 5,
+    },
+  }
 
   return (
     <>
       <IonContent className="transparent">
-        <IonImg src={src} />
+        {src ? (
+          <IonSlides options={options}>
+            <IonSlide>
+              <div className="swiper-zoom-container">
+                <img src={src} alt="Zoom Viewer" />
+              </div>
+            </IonSlide>
+          </IonSlides>
+        ) : null}
       </IonContent>
       <IonFooter>
         <IonToolbar className="transparent">
