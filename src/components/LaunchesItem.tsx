@@ -17,7 +17,7 @@ const LaunchesItem: React.FC<Props> = props => {
     <IonCard
       button
       className={styles.card}
-      routerLink={`/missions/${launch.id}`}
+      routerLink={`/launches/${launch.id}`}
     >
       <IonImg
         src={launch.links.flickr_images[0] || noPhoto}

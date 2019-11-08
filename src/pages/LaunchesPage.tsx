@@ -9,11 +9,11 @@ import React from 'react'
 
 import Launches from '../components/Launches'
 
-const Missions: React.FC = () => (
+const LaunchesPage: React.FC = () => (
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        <IonTitle>Ionic React</IonTitle>
+        <IonTitle>Launches</IonTitle>
       </IonToolbar>
     </IonHeader>
     <IonContent className="ion-padding">
@@ -22,4 +22,4 @@ const Missions: React.FC = () => (
   </IonPage>
 )
 
-export default Missions
+export default LaunchesPage
