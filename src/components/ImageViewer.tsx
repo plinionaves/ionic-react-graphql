@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  IonHeader,
   IonToolbar,
   IonTitle,
   IonButtons,
@@ -8,8 +7,9 @@ import {
   IonIcon,
   IonContent,
   IonImg,
+  IonFooter,
 } from '@ionic/react'
-import { close } from 'ionicons/icons'
+import { close, add, remove } from 'ionicons/icons'
 
 interface Props {
   src: string
@@ -21,19 +21,27 @@ const ImageViewer: React.FC<Props> = props => {
 
   return (
     <>
-      <IonHeader>
+      <IonContent>
+        <IonImg src={src} />
+      </IonContent>
+      <IonFooter>
         <IonToolbar>
-          <IonTitle>Image</IonTitle>
+          <IonTitle slot="start">Zoom</IonTitle>
+          <IonButtons slot="start">
+            <IonButton color="light">
+              <IonIcon icon={add} slot="icon-only" />
+            </IonButton>
+            <IonButton color="light">
+              <IonIcon icon={remove} slot="icon-only" />
+            </IonButton>
+          </IonButtons>
           <IonButtons slot="end">
-            <IonButton onClick={onClose}>
+            <IonButton color="light" onClick={onClose}>
               <IonIcon icon={close} slot="icon-only" />
             </IonButton>
           </IonButtons>
         </IonToolbar>
-      </IonHeader>
-      <IonContent>
-        <IonImg src={src} />
-      </IonContent>
+      </IonFooter>
     </>
   )
 }
