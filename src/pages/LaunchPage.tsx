@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import {
   IonPage,
   IonHeader,
@@ -7,8 +7,13 @@ import {
   IonContent,
   IonButtons,
   IonBackButton,
+  IonModal,
+  IonButton,
+  IonIcon,
+  IonImg,
 } from '@ionic/react'
 import { useParams } from 'react-router'
+import { close } from 'ionicons/icons'
 
 import { useLaunchQuery, Launch } from '../generated/graphql'
 import LaunchDetail from '../components/LaunchDetail'
@@ -18,9 +23,11 @@ const LaunchPage: React.FC = () => {
   const { data, loading } = useLaunchQuery({
     variables: { id },
   })
+  const [seletedImage, setSelectedImage] = useState('')
 
   const handleSelectImage = useCallback((url: string) => {
     console.log('Selected: ', url)
+    setSelectedImage(url)
   }, [])
 
   return (
@@ -43,6 +50,22 @@ const LaunchPage: React.FC = () => {
           />
         )}
       </IonContent>
+
+      <IonModal isOpen={!!seletedImage}>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Image</IonTitle>
+            <IonButtons slot="end">
+              <IonButton onClick={() => setSelectedImage('')}>
+                <IonIcon icon={close} slot="icon-only" />
+              </IonButton>
+            </IonButtons>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <IonImg src={seletedImage} />
+        </IonContent>
+      </IonModal>
     </IonPage>
   )
 }
