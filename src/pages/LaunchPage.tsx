@@ -8,15 +8,12 @@ import {
   IonButtons,
   IonBackButton,
   IonModal,
-  IonButton,
-  IonIcon,
-  IonImg,
 } from '@ionic/react'
 import { useParams } from 'react-router'
-import { close } from 'ionicons/icons'
 
 import { useLaunchQuery, Launch } from '../generated/graphql'
 import LaunchDetail from '../components/LaunchDetail'
+import ImageViewer from '../components/ImageViewer'
 
 const LaunchPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -29,6 +26,8 @@ const LaunchPage: React.FC = () => {
     console.log('Selected: ', url)
     setSelectedImage(url)
   }, [])
+
+  const handleModalClose = useCallback(() => setSelectedImage(''), [])
 
   return (
     <IonPage>
@@ -52,19 +51,7 @@ const LaunchPage: React.FC = () => {
       </IonContent>
 
       <IonModal isOpen={!!seletedImage}>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Image</IonTitle>
-            <IonButtons slot="end">
-              <IonButton onClick={() => setSelectedImage('')}>
-                <IonIcon icon={close} slot="icon-only" />
-              </IonButton>
-            </IonButtons>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>
-          <IonImg src={seletedImage} />
-        </IonContent>
+        <ImageViewer src={seletedImage} onClose={handleModalClose} />
       </IonModal>
     </IonPage>
   )
