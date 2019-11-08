@@ -15,7 +15,7 @@ import LaunchesPage from './pages/LaunchesPage'
 const Router: React.FC = () => (
   <IonReactRouter>
     <IonMenu contentId="main-content" />
-    <IonMenu contentId="main-content" side="end">
+    <IonMenu contentId="main-content" side="end" menuId="menu-r">
       <IonHeader>
         <IonToolbar color="tertiary">
           <IonTitle>Menu</IonTitle>
