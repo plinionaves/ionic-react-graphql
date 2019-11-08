@@ -12,6 +12,8 @@ import {
 } from '@ionic/react'
 import { close, add, remove } from 'ionicons/icons'
 
+import styles from './ImageViewer.module.scss'
+
 interface Props {
   src: string
   onClose?: () => void
@@ -35,7 +37,11 @@ const ImageViewer: React.FC<Props> = props => {
     <>
       <IonContent className="transparent">
         {src ? (
-          <IonSlides options={options} ref={slidesRef}>
+          <IonSlides
+            options={options}
+            ref={slidesRef}
+            className={styles.slides}
+          >
             <IonSlide>
               <div className="swiper-zoom-container">
                 <img src={src} alt="Zoom Viewer" />
