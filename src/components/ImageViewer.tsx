@@ -21,11 +21,11 @@ const ImageViewer: React.FC<Props> = props => {
 
   return (
     <>
-      <IonContent>
+      <IonContent className="transparent">
         <IonImg src={src} />
       </IonContent>
       <IonFooter>
-        <IonToolbar>
+        <IonToolbar className="transparent">
           <IonTitle slot="start">Zoom</IonTitle>
           <IonButtons slot="start">
             <IonButton color="light">
