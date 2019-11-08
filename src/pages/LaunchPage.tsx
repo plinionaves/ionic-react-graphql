@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import {
   IonPage,
   IonHeader,
@@ -19,6 +19,10 @@ const LaunchPage: React.FC = () => {
     variables: { id },
   })
 
+  const handleSelectImage = useCallback((url: string) => {
+    console.log('Selected: ', url)
+  }, [])
+
   return (
     <IonPage>
       <IonHeader>
@@ -33,7 +37,10 @@ const LaunchPage: React.FC = () => {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <LaunchDetail launch={data!.launch as Launch} />
+          <LaunchDetail
+            launch={data!.launch as Launch}
+            onSelectImage={handleSelectImage}
+          />
         )}
       </IonContent>
     </IonPage>
