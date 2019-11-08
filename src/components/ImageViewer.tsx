@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import {
   IonToolbar,
   IonTitle,
@@ -19,17 +19,23 @@ interface Props {
 
 const ImageViewer: React.FC<Props> = props => {
   const { src, onClose = () => null } = props
+  const slidesRef = useRef<HTMLIonSlidesElement>(null)
   const options = {
     zoom: {
       maxRatio: 5,
     },
   }
 
+  const handleZoom = async (zoomIn: boolean) => {
+    const { zoom } = await slidesRef.current!.getSwiper()
+    zoomIn ? zoom.in() : zoom.out()
+  }
+
   return (
     <>
       <IonContent className="transparent">
         {src ? (
-          <IonSlides options={options}>
+          <IonSlides options={options} ref={slidesRef}>
             <IonSlide>
               <div className="swiper-zoom-container">
                 <img src={src} alt="Zoom Viewer" />
@@ -42,10 +48,10 @@ const ImageViewer: React.FC<Props> = props => {
         <IonToolbar className="transparent">
           <IonTitle slot="start">Zoom</IonTitle>
           <IonButtons slot="start">
-            <IonButton color="light">
+            <IonButton color="light" onClick={() => handleZoom(true)}>
               <IonIcon icon={add} slot="icon-only" />
             </IonButton>
-            <IonButton color="light">
+            <IonButton color="light" onClick={() => handleZoom(false)}>
               <IonIcon icon={remove} slot="icon-only" />
             </IonButton>
           </IonButtons>
