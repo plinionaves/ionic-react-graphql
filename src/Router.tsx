@@ -1,28 +1,14 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import {
-  IonRouterOutlet,
-  IonMenu,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-} from '@ionic/react'
+import { IonRouterOutlet } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
 
 import LaunchPage from './pages/LaunchPage'
 import LaunchesPage from './pages/LaunchesPage'
 
-const Router: React.FC = () => (
+const Router: React.FC = props => (
   <IonReactRouter>
-    <IonMenu contentId="main-content" />
-    <IonMenu contentId="main-content" side="end" menuId="menu-r">
-      <IonHeader>
-        <IonToolbar color="tertiary">
-          <IonTitle>Menu</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-    </IonMenu>
-
+    {props.children}
     <IonRouterOutlet id="main-content">
       <Route path="/launches" exact>
         <LaunchesPage />

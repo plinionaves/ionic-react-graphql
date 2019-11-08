@@ -19,9 +19,6 @@ const LaunchesPage: React.FC = () => (
           <IonMenuButton />
         </IonButtons>
         <IonTitle>Launches</IonTitle>
-        <IonButtons slot="end">
-          <IonMenuButton menu="menu-r" />
-        </IonButtons>
       </IonToolbar>
     </IonHeader>
     <IonContent className="ion-padding">
