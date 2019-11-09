@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { IonButton } from '@ionic/react'
+import { IonButton, IonGrid, IonRow, IonCol } from '@ionic/react'
 
 import { useLaunchesPastQuery, Launch } from '../generated/graphql'
 import LaunchesItem from './LaunchesItem'
@@ -45,21 +45,37 @@ const Launches: React.FC = () => {
   }, [fetchMore, limit, offset])
 
   return (
-    <>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        data &&
-        data.launchesPast.map(launch => (
-          <LaunchesItem key={launch.id} launch={launch as Launch} />
-        ))
-      )}
+    <IonGrid fixed className="ion-no-padding">
+      <IonRow>
+        {loading ? (
+          <IonCol>
+            <p>Loading...</p>
+          </IonCol>
+        ) : (
+          data &&
+          data.launchesPast.map(launch => (
+            <IonCol
+              key={launch.id}
+              size="12"
+              sizeSm="6"
+              sizeLg="4"
+              className="ion-no-padding"
+            >
+              <LaunchesItem launch={launch as Launch} />
+            </IonCol>
+          ))
+        )}
+      </IonRow>
       {!loading && !finished ? (
-        <IonButton expand="block" onClick={handleLoadMore}>
-          Load more...
-        </IonButton>
+        <IonRow>
+          <IonCol>
+            <IonButton expand="block" onClick={handleLoadMore}>
+              Load more...
+            </IonButton>
+          </IonCol>
+        </IonRow>
       ) : null}
-    </>
+    </IonGrid>
   )
 }
 
