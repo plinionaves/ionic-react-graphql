@@ -49,7 +49,7 @@ const Menu: React.FC<Props> = props => {
       </IonHeader>
       <IonContent>
         <IonList lines="none">
-          <IonMenuToggle menu={props.menuId}>
+          <IonMenuToggle menu={props.menuId} autoHide={false}>
             {links.map(link => (
               <IonItem
                 key={link.path}
