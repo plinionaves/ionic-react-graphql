@@ -1,5 +1,6 @@
 {
   "name": "spacex-app",
+  "alias": ["spacex-app"],
   "version": 2,
   "build": {
     "env": {
