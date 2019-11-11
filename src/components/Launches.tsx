@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { IonButton, IonGrid, IonRow, IonCol } from '@ionic/react'
+import { IonButton, IonGrid, IonRow, IonCol, IonLoading } from '@ionic/react'
 
 import { useLaunchesPastQuery, Launch } from '../generated/graphql'
 import LaunchesItem from './LaunchesItem'
@@ -44,15 +44,14 @@ const Launches: React.FC = () => {
     }
   }, [fetchMore, limit, offset])
 
+  if (loading) {
+    return <IonLoading isOpen={loading} message="Loading..." />
+  }
+
   return (
     <IonGrid fixed className="ion-no-padding">
       <IonRow>
-        {loading ? (
-          <IonCol>
-            <p>Loading...</p>
-          </IonCol>
-        ) : (
-          data &&
+        {data &&
           data.launchesPast.map(launch => (
             <IonCol
               key={launch.id}
@@ -63,8 +62,7 @@ const Launches: React.FC = () => {
             >
               <LaunchesItem launch={launch as Launch} />
             </IonCol>
-          ))
-        )}
+          ))}
       </IonRow>
       {!loading && !finished ? (
         <IonRow>
