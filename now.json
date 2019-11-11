@@ -1,0 +1,9 @@
+{
+  "name": "spacex-app",
+  "version": 2,
+  "build": {
+    "env": {
+      "REACT_APP_API_URL": "@react-app-api-url"
+    }
+  }
+}
