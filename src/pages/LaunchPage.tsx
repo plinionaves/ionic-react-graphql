@@ -16,12 +16,13 @@ import {
 import { useParams } from 'react-router'
 
 import { useLaunchQuery, Launch } from '../generated/graphql'
+import Error from '../components/Error'
 import LaunchDetail from '../components/LaunchDetail'
 import ImageViewer from '../components/ImageViewer'
 
 const LaunchPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
-  const { data, loading } = useLaunchQuery({
+  const { data, loading, error } = useLaunchQuery({
     variables: { id },
   })
   const [seletedImage, setSelectedImage] = useState('')
@@ -46,6 +47,8 @@ const LaunchPage: React.FC = () => {
       <IonContent className="ion-padding">
         {loading ? (
           <IonLoading isOpen={loading} message="Loading..." />
+        ) : error ? (
+          <Error error={error} />
         ) : (
           <IonGrid fixed>
             <IonRow>

@@ -2,10 +2,11 @@ import React, { useState, useCallback, useEffect } from 'react'
 import { IonButton, IonGrid, IonRow, IonCol, IonLoading } from '@ionic/react'
 
 import { useLaunchesPastQuery, Launch } from '../generated/graphql'
+import Error from './Error'
 import LaunchesItem from './LaunchesItem'
 
 const Launches: React.FC = () => {
-  const { data, loading, fetchMore } = useLaunchesPastQuery({
+  const { data, loading, error, fetchMore } = useLaunchesPastQuery({
     variables: { limit: 12, offset: 0 },
   })
   const [offset, setOffset] = useState(0)
@@ -46,6 +47,10 @@ const Launches: React.FC = () => {
 
   if (loading) {
     return <IonLoading isOpen={loading} message="Loading..." />
+  }
+
+  if (error) {
+    return <Error error={error} />
   }
 
   return (
