@@ -50,7 +50,7 @@ const LaunchPage: React.FC = () => {
         )}
       </IonContent>
 
-      <IonModal isOpen={!!seletedImage}>
+      <IonModal isOpen={!!seletedImage} onDidDismiss={handleModalClose}>
         <ImageViewer src={seletedImage} onClose={handleModalClose} />
       </IonModal>
     </IonPage>
