@@ -28,7 +28,6 @@ const LaunchPage: React.FC = () => {
   const [seletedImage, setSelectedImage] = useState('')
 
   const handleSelectImage = useCallback((url: string) => {
-    console.log('Selected: ', url)
     setSelectedImage(url)
   }, [])
 
@@ -39,7 +38,7 @@ const LaunchPage: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/launches" />
+            <IonBackButton defaultHref="/launches" color="light" />
           </IonButtons>
           <IonTitle>Launch</IonTitle>
         </IonToolbar>
